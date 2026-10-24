@@ -37,49 +37,19 @@ include(cmake/CompilerWarnings.cmake)
 # C library
 #------------------------------------------------------------------------------
 
-add_library(sensor_driver STATIC
-    src/sensor.c
-)
-
-target_include_directories(sensor_driver
-    PUBLIC
-        "${PROJECT_SOURCE_DIR}/include"
-)
-
-target_compile_features(sensor_driver PUBLIC c_std_17)
-set_project_warnings(sensor_driver)
+add_subdirectory(components/sensor)
 
 #------------------------------------------------------------------------------
 # C++ library
 #------------------------------------------------------------------------------
 
-add_library(starter_lib STATIC
-    src/source.cpp
-)
-
-target_include_directories(starter_lib
-    PUBLIC
-        "${PROJECT_SOURCE_DIR}/include"
-)
-
-target_compile_features(starter_lib PUBLIC cxx_std_23)
-set_project_warnings(starter_lib)
+add_subdirectory(components/greeting)
 
 #------------------------------------------------------------------------------
 # Command-line executable
 #------------------------------------------------------------------------------
 
-add_executable(starter
-    src/main.cpp
-)
-
-target_link_libraries(starter
-    PRIVATE
-        starter_lib
-        sensor_driver
-)
-
-set_project_warnings(starter)
+add_subdirectory(app)
 
 #------------------------------------------------------------------------------
 # Tests

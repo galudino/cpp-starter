@@ -1,6 +1,6 @@
 
 ///
-/// \file       header.hpp
+/// \file       greeting.hpp
 /// \brief      Public interface for the starter C++ library.
 ///
 /// \details    Demonstrates a separately compiled C++ library and
@@ -10,8 +10,8 @@
 /// \date       2026-10-23
 ///
 
-#ifndef HEADER_HPP
-#define HEADER_HPP
+#ifndef GREETING_HPP
+#define GREETING_HPP
 
 #include <string>
 #include <string_view>
@@ -41,4 +41,4 @@ namespace starter {
 
 } // namespace starter
 
-#endif /* HEADER_HPP */
+#endif /* GREETING_HPP */

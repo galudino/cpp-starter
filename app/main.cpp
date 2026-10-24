@@ -7,8 +7,8 @@
 /// \date       2026-10-23
 ///
 
-#include "header.hpp"
-#include "sensor.h"
+#include "starter/greeting.hpp"
+#include "sensor/sensor.h"
 
 #include <cstdlib>
 #include <iostream>

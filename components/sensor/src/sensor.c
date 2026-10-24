@@ -7,7 +7,7 @@
 /// \date       2026-10-23
 ///
 
-#include "sensor.h"
+#include "sensor/sensor.h"
 
 int sensor_read(void) {
     return 42;

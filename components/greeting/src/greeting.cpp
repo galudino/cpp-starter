@@ -1,13 +1,13 @@
 
 ///
-/// \file       source.cpp
+/// \file       greeting.cpp
 /// \brief      Implementation of the starter C++ library.
 ///
 /// \author     galudino
 /// \date       2026-10-23
 ///
 
-#include "header.hpp"
+#include "starter/greeting.hpp"
 
 #include <string>
 #include <string_view>

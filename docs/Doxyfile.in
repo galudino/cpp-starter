@@ -59,7 +59,7 @@ WARN_AS_ERROR          = NO
 # Input
 #------------------------------------------------------------------------------
 
-INPUT                  = include src tests
+INPUT                  = components app tests
 FILE_PATTERNS          = *.hpp *.h *.cpp *.cc *.c
 RECURSIVE              = YES
 
@@ -95,7 +95,7 @@ GENERATE_XML           = NO
 #------------------------------------------------------------------------------
 
 HAVE_DOT               = YES
-CLASS_DIAGRAMS         = YES
+CLASS_GRAPH            = YES
 
 CALL_GRAPH             = NO
 CALLER_GRAPH           = NO
