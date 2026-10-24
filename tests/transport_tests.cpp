@@ -9,9 +9,13 @@
 
 #include <starter/mock_transport.hpp>
 
+#include <concepts>
+#include <cstdint>
 #include <cstdlib>
 #include <iostream>
 #include <string_view>
+#include <type_traits>
+#include <utility>
 
 namespace {
 
@@ -32,10 +36,27 @@ bool check(bool condition, std::string_view description) {
 }
 
 ///
+/// \brief      Verify the transport API at compile time.
+///
+static_assert(
+    std::derived_from<starter::mock_transport, starter::byte_transport<starter::mock_transport>>);
+
+static_assert(std::is_default_constructible_v<starter::mock_transport>);
+
+static_assert(requires(starter::mock_transport &transport,
+                       const starter::mock_transport &const_transport, std::uint8_t address,
+                       std::uint8_t value) {
+    { const_transport.read(address) } -> std::same_as<std::uint8_t>;
+    { transport.write(address, value) } -> std::same_as<void>;
+});
+
+///
 /// \brief      Verify mock transport register operations.
 ///
 bool test_mock_transport() {
     starter::mock_transport transport{};
+
+    auto &base = static_cast<starter::byte_transport<starter::mock_transport> &>(transport);
 
     auto success = true;
 
@@ -61,6 +82,14 @@ bool test_mock_transport() {
 
     success &=
         check(transport.read(0xFF) == 0x7E, "Mock transport supports the final register address");
+
+    // Verify dispatch through the CRTP base interface.
+    base.write(0x30, 0x55);
+
+    success &= check(base.read(0x30) == 0x55, "CRTP base dispatches reads and writes");
+
+    success &=
+        check(transport.read(0x30) == 0x55, "CRTP and concrete interfaces share register state");
 
     return success;
 }
