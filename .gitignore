@@ -39,13 +39,16 @@
 *.app
 
 # Build directories
+/build/
 build/
 Build/
 build-*/
 
 # CMake generated files
+cmake-build-*/
 CMakeFiles/
 CMakeCache.txt
+CMakeUserPresets.json
 cmake_install.cmake
 Makefile
 install_manifest.txt
@@ -66,3 +69,26 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Coverage and profiling
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+
+# Generated documentation
+/docs/html/
+/docs/latex/
+
+# Editor / OS
+.DS_Store
+*.swp
+*.swo
+*~
+.vs/
+
+# Python utilities
+__pycache__/
+*.pyc
+.venv/
