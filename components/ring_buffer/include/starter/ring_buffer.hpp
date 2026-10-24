@@ -33,8 +33,8 @@ template <std::semiregular T, std::size_t Capacity>
     requires(Capacity > 0)
 class ring_buffer {
 public:
-    using value_type = T;
-    using size_type = std::size_t;
+    using value_type = T;          ///< Element type.
+    using size_type = std::size_t; ///< Unsigned type for sizes and indices.
 
     ///
     /// \brief      Append an element to the back of the buffer.
@@ -100,9 +100,9 @@ public:
     [[nodiscard]] constexpr bool full() const noexcept { return m_size == Capacity; }
 
 private:
-    std::array<T, Capacity> m_storage{};
-    size_type m_head = 0;
-    size_type m_size = 0;
+    std::array<T, Capacity> m_storage{}; ///< Inline element storage.
+    size_type m_head = 0;                ///< Index of the front element.
+    size_type m_size = 0;                ///< Number of stored elements.
 };
 
 } // namespace starter
