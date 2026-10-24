@@ -7,8 +7,8 @@ add_executable(starter
 )
 
 target_link_libraries(starter PRIVATE
-    starter_lib
-    sensor_driver
+    starter::greeting
+    starter::sensor
 )
 
 set_project_warnings(starter)

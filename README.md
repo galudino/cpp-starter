@@ -28,7 +28,7 @@ Ninja, GitHub Codespaces, and Visual Studio Code.
 
 | Target | Description |
 |--------|-------------|
-| starter_lib | C++ static library |
+| greeting | C++ static library |
 | sensor_driver | C static library |
 | starter | Command-line executable |
 | starter_tests | Unit tests |

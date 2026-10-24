@@ -1,14 +1,13 @@
 
 ///
-/// \file       library_tests.cpp
-/// \brief      Unit tests for the starter C and C++ libraries.
+/// \file       sensor_tests.cpp
+/// \brief      Unit tests for the sensor library.
 ///
 /// \author     galudino
 /// \date       2026-10-23
 ///
 
-#include "starter/greeting.hpp"
-#include "sensor/sensor.h"
+#include <sensor/sensor.h>
 
 #include <cstdlib>
 #include <iostream>
@@ -33,40 +32,11 @@ bool check(bool condition, std::string_view description) {
 }
 
 ///
-/// \brief      Tests the greeting generator.
-///
-/// \return     True if all tests pass.
-///
-bool test_make_greeting() {
-    const auto greeting = starter::make_greeting("World");
-
-    return check(greeting == "Hello, World!", "make_greeting");
-}
-
-///
-/// \brief      Tests integer addition.
-///
-/// \return     True if all tests pass.
-///
-bool test_add() {
-    static_assert(starter::add(2, 3) == 5);
-
-    auto success = true;
-
-    success &= check(starter::add(-2, 3) == 1, "add: mixed signs");
-    success &= check(starter::add(0, 0) == 0, "add: zeros");
-
-    return success;
-}
-
-///
 /// \brief      Tests the C sensor driver.
 ///
 /// \return     True if the simulated reading is correct.
 ///
-bool test_sensor() {
-    return check(sensor_read() == 42, "sensor_read");
-}
+bool test_sensor() { return check(sensor_read() == 42, "sensor_read"); }
 
 } // namespace
 
@@ -78,8 +48,6 @@ bool test_sensor() {
 int main() {
     auto success = true;
 
-    success &= test_make_greeting();
-    success &= test_add();
     success &= test_sensor();
 
     if (success) {

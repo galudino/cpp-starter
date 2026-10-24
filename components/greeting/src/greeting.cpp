@@ -7,7 +7,7 @@
 /// \date       2026-10-23
 ///
 
-#include "starter/greeting.hpp"
+#include <starter/greeting.hpp>
 
 #include <string>
 #include <string_view>

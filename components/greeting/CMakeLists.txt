@@ -1,23 +1,22 @@
-
 #
-# Greeting C++ library.
+# Greeting component.
 #
 
-add_library(starter_lib STATIC
+add_library(greeting STATIC
     src/greeting.cpp
 )
 
-target_sources(starter_lib PUBLIC
+target_sources(greeting PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
     FILES
         include/starter/greeting.hpp
 )
 
-target_compile_features(starter_lib PUBLIC
+target_compile_features(greeting PUBLIC
     cxx_std_23
 )
 
-add_library(starter::greeting ALIAS starter_lib)
+add_library(starter::greeting ALIAS greeting)
 
-set_project_warnings(starter_lib)
+set_project_warnings(greeting)

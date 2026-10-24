@@ -76,7 +76,7 @@
         {
             "label": "Clang: Tidy",
             "type": "shell",
-            "command": "clang-tidy -p '${command:cmake.buildDirectory}' src/main.cpp src/source.cpp src/sensor.c tests/library_tests.cpp",
+            "command": "clang-tidy -p '${command:cmake.buildDirectory}' app/main.cpp components/greeting/include/starter/greeting.hpp components/greeting/src/greeting.cpp components/sensor/include/sensor.h components/sensor/src/sensor.c tests/greeting_tests.cpp tests/sensor_tests.cpp",
             "dependsOn": "CMake: Configure",
             "problemMatcher": []
         }

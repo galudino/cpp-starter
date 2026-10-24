@@ -1,17 +1,30 @@
-
-add_executable(starter_tests
-    library_tests.cpp
+add_executable(greeting_tests
+    greeting_tests.cpp
 )
 
-target_link_libraries(starter_tests
+add_executable(sensor_tests
+    sensor_tests.cpp
+)
+
+target_link_libraries(greeting_tests 
     PRIVATE
-        starter_lib
-        sensor_driver
+        starter::greeting
 )
 
-set_project_warnings(starter_tests)
+target_link_libraries(sensor_tests 
+    PRIVATE
+        starter::sensor
+)
+
+set_project_warnings(greeting_tests)
+set_project_warnings(sensor_tests)
 
 add_test(
-    NAME starter_library_tests
-    COMMAND starter_tests
+    NAME greeting_library_tests
+    COMMAND greeting_tests
+)
+
+add_test(
+    NAME sensor_library_tests
+    COMMAND sensor_tests
 )
