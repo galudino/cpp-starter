@@ -1,4 +1,3 @@
-
 cmake_minimum_required(VERSION 3.25)
 
 project(
@@ -34,16 +33,11 @@ include(CTest)
 include(cmake/CompilerWarnings.cmake)
 
 #------------------------------------------------------------------------------
-# C library
-#------------------------------------------------------------------------------
-
-add_subdirectory(components/sensor)
-
-#------------------------------------------------------------------------------
-# C++ library
+# Components
 #------------------------------------------------------------------------------
 
 add_subdirectory(components/greeting)
+add_subdirectory(components/sensor)
 add_subdirectory(components/transport)
 
 #------------------------------------------------------------------------------

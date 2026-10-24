@@ -1,4 +1,3 @@
-
 ///
 /// \file       sensor_tests.cpp
 /// \brief      Unit tests for the sensor library.
@@ -7,7 +6,7 @@
 /// \date       2026-10-23
 ///
 
-#include <sensor/sensor.h>
+#include <starter/sensor.h>
 
 #include <cstdlib>
 #include <iostream>

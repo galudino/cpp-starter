@@ -1,4 +1,3 @@
-
 ///
 /// \file       greeting.hpp
 /// \brief      Public interface for the starter C++ library.
@@ -10,8 +9,8 @@
 /// \date       2026-10-23
 ///
 
-#ifndef GREETING_HPP
-#define GREETING_HPP
+#ifndef STARTER_GREETING_HPP
+#define STARTER_GREETING_HPP
 
 #include <string>
 #include <string_view>
@@ -40,4 +39,4 @@ namespace starter {
 
 } // namespace starter
 
-#endif /* GREETING_HPP */
+#endif // STARTER_GREETING_HPP

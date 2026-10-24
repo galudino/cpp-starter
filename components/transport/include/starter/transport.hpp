@@ -1,4 +1,3 @@
-
 ///
 /// \file       transport.hpp
 /// \brief      CRTP byte transport interface.

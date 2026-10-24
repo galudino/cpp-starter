@@ -1,4 +1,3 @@
-
 ///
 /// \file       greeting.cpp
 /// \brief      Implementation of the starter C++ library.

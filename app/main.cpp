@@ -1,4 +1,3 @@
-
 ///
 /// \file       main.cpp
 /// \brief      Entry point for the starter command-line application.
@@ -7,7 +6,7 @@
 /// \date       2026-10-23
 ///
 
-#include <sensor/sensor.h>
+#include <starter/sensor.h>
 #include <starter/greeting.hpp>
 
 #include <cstdlib>

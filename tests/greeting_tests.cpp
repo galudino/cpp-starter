@@ -1,4 +1,3 @@
-
 ///
 /// \file       greeting_tests.cpp
 /// \brief      Unit tests for the greeting library.
@@ -42,12 +41,9 @@ bool test_make_greeting() {
 }
 
 ///
-/// \brief      Tests integer addition.
+/// \brief      Verify ASCII name-initial validation.
 ///
 /// \return     True if all tests pass.
-
-///
-/// \brief      Verify ASCII name-initial validation.
 ///
 bool test_is_valid_initial() {
     static_assert(starter::is_valid_initial('A'));
