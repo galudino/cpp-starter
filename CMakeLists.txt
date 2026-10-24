@@ -11,9 +11,8 @@ project(
 # Project options
 #------------------------------------------------------------------------------
 
-option(BUILD_TESTING "Build unit tests" ON)
-option(BUILD_DOCUMENTATION "Enable Doxygen documentation" ON)
-option(ENABLE_WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
+option(STARTER_BUILD_TESTS "Build unit tests" ${PROJECT_IS_TOP_LEVEL})
+option(STARTER_BUILD_DOCS "Add a Doxygen 'docs' target" ${PROJECT_IS_TOP_LEVEL})
 
 #------------------------------------------------------------------------------
 # Language standards
@@ -29,7 +28,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-include(CTest)
 include(cmake/CompilerWarnings.cmake)
 
 #------------------------------------------------------------------------------
@@ -50,7 +48,10 @@ add_subdirectory(app)
 # Tests
 #------------------------------------------------------------------------------
 
-if(BUILD_TESTING)
+if(STARTER_BUILD_TESTS)
+    # enable_testing() rather than include(CTest): CTest adds dozens of
+    # dashboard targets that clutter the CMake Tools target picker.
+    enable_testing()
     add_subdirectory(tests)
 endif()
 
@@ -58,7 +59,7 @@ endif()
 # Documentation
 #------------------------------------------------------------------------------
 
-if(BUILD_DOCUMENTATION)
+if(STARTER_BUILD_DOCS)
     find_package(Doxygen QUIET)
 
     if(DOXYGEN_FOUND)

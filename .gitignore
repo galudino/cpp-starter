@@ -1,94 +1,45 @@
-# Prerequisites
-*.d
+# Build trees (presets build into build/<preset>)
+/build/
+/out/
+cmake-build-*/
 
-# Compiled Object files
-*.slo
-*.lo
+# Local CMake overrides
+CMakeUserPresets.json
+
+# Objects, libraries, executables
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.so.*
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
 *.a
 *.lib
-
-# Executables
+*.so
+*.so.*
+*.dylib
+*.dll
 *.exe
 *.out
-*.app
 
-# Build directories
-/build/
-build/
-Build/
-build-*/
-
-# CMake generated files
-cmake-build-*/
-CMakeFiles/
-CMakeCache.txt
-CMakeUserPresets.json
-cmake_install.cmake
-Makefile
-install_manifest.txt
-compile_commands.json
-
-# Temporary files
-*.tmp
-*.log
-*.bak
-*.swp
-
-# vcpkg
-vcpkg_installed/
-
-# debug information files
+# Debug info, coverage, profiling
 *.dwo
-
-# test output & cache
-Testing/
-.cache/
-
-# Coverage and profiling
+*.pdb
 *.gcda
 *.gcno
 *.gcov
 *.profraw
 *.profdata
 
-# Generated documentation
-/docs/html/
-/docs/latex/
+# Tool caches (clangd index lives in .cache/)
+.cache/
+Testing/
+compile_commands.json
 
-# Editor / OS
+# Editors and OS
 .DS_Store
 *.swp
 *.swo
 *~
 .vs/
+.idea/
 
-# Python utilities
+# Python helpers
 __pycache__/
-*.pyc
 .venv/
