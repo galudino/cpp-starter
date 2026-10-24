@@ -3,36 +3,18 @@
 /// \brief      Unit tests for the transport library.
 ///
 /// \author     galudino
-/// \date       2026-10-23
+/// \date       2026-10-24
 ///
 
 #include <starter/mock_transport.hpp>
 
+#include <doctest/doctest.h>
+
 #include <concepts>
 #include <cstdint>
-#include <cstdlib>
-#include <iostream>
-#include <string_view>
 #include <type_traits>
-#include <utility>
 
 namespace {
-
-///
-/// \brief      Evaluates a test condition.
-///
-/// \param      condition   Condition to evaluate.
-/// \param      description Description of the test.
-///
-/// \return     True if the condition is satisfied.
-///
-bool check(bool condition, std::string_view description) {
-    if (!condition) {
-        std::cerr << "FAIL: " << description << '\n';
-    }
-
-    return condition;
-}
 
 ///
 /// \brief      Verify the transport API at compile time.
@@ -49,65 +31,37 @@ static_assert(requires(starter::mock_transport &transport,
     { transport.write(address, value) } -> std::same_as<void>;
 });
 
-///
-/// \brief      Verify mock transport register operations.
-///
-bool test_mock_transport() {
+} // namespace
+
+TEST_CASE("mock_transport reads and writes registers") {
     starter::mock_transport transport{};
 
     auto &base = static_cast<starter::byte_transport<starter::mock_transport> &>(transport);
 
-    auto success = true;
-
     // All registers should initially contain zero.
-    success &= check(transport.read(0x10) == 0x00, "Mock transport registers initialize to zero");
+    CHECK(transport.read(0x10) == 0x00);
 
     // Write and read back a register value.
     transport.write(0x10, 0xAB);
 
-    success &=
-        check(transport.read(0x10) == 0xAB, "Mock transport preserves written register values");
+    CHECK(transport.read(0x10) == 0xAB);
 
     // Writes to different addresses must remain independent.
     transport.write(0x20, 0x42);
 
-    success &=
-        check(transport.read(0x10) == 0xAB, "Writing another register preserves the first value");
+    CHECK(transport.read(0x10) == 0xAB);
 
-    success &= check(transport.read(0x20) == 0x42, "Mock transport supports multiple registers");
+    CHECK(transport.read(0x20) == 0x42);
 
     // Exercise the highest valid register address.
     transport.write(0xFF, 0x7E);
 
-    success &=
-        check(transport.read(0xFF) == 0x7E, "Mock transport supports the final register address");
+    CHECK(transport.read(0xFF) == 0x7E);
 
     // Verify dispatch through the CRTP base interface.
     base.write(0x30, 0x55);
 
-    success &= check(base.read(0x30) == 0x55, "CRTP base dispatches reads and writes");
+    CHECK(base.read(0x30) == 0x55);
 
-    success &=
-        check(transport.read(0x30) == 0x55, "CRTP and concrete interfaces share register state");
-
-    return success;
-}
-
-} // namespace
-
-///
-/// \brief      Test application entry point.
-///
-/// \return     EXIT_SUCCESS if all tests pass; EXIT_FAILURE otherwise.
-///
-int main() {
-    auto success = true;
-
-    success &= test_mock_transport();
-
-    if (success) {
-        std::cout << "All tests passed.\n";
-    }
-
-    return success ? EXIT_SUCCESS : EXIT_FAILURE;
+    CHECK(transport.read(0x30) == 0x55);
 }
