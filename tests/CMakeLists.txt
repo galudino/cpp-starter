@@ -17,14 +17,14 @@ include("${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake")
 
 add_executable(starter_tests
     greeting_tests.cpp
+    ring_buffer_tests.cpp
     sensor_tests.cpp
-    transport_tests.cpp
 )
 
 target_link_libraries(starter_tests PRIVATE
     starter::greeting
+    starter::ring_buffer
     starter::sensor
-    starter::transport
     doctest::doctest_with_main
 )
 
