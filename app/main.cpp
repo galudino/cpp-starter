@@ -7,8 +7,8 @@
 /// \date       2026-10-23
 ///
 
-#include <starter/greeting.hpp>
 #include <sensor/sensor.h>
+#include <starter/greeting.hpp>
 
 #include <cstdlib>
 #include <iostream>
@@ -20,7 +20,7 @@
 ///
 int main() {
     std::cout << starter::make_greeting("Codespaces") << '\n';
-    std::cout << "2 + 3 = " << starter::add(2, 3) << '\n';
+    std::cout << "Valid name initial: " << std::boolalpha << starter::is_valid_initial('C') << '\n';
     std::cout << "Sensor reading: " << sensor_read() << '\n';
 
     return EXIT_SUCCESS;

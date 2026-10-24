@@ -44,6 +44,7 @@ add_subdirectory(components/sensor)
 #------------------------------------------------------------------------------
 
 add_subdirectory(components/greeting)
+add_subdirectory(components/transport)
 
 #------------------------------------------------------------------------------
 # Command-line executable

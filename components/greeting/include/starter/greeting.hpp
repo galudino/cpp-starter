@@ -28,15 +28,14 @@ namespace starter {
 [[nodiscard]] std::string make_greeting(std::string_view name);
 
 ///
-/// \brief      Computes the sum of two integers.
+/// \brief      Determine whether a character can begin an ASCII name.
 ///
-/// \param      lhs         Left operand.
-/// \param      rhs         Right operand.
+/// \param      character  Character to examine.
 ///
-/// \return     Sum of both operands.
+/// \return     True if the character is an ASCII letter.
 ///
-[[nodiscard]] constexpr int add(int lhs, int rhs) noexcept {
-    return lhs + rhs;
+[[nodiscard]] constexpr bool is_valid_initial(char character) noexcept {
+    return (character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z');
 }
 
 } // namespace starter

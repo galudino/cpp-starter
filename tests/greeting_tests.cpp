@@ -45,14 +45,24 @@ bool test_make_greeting() {
 /// \brief      Tests integer addition.
 ///
 /// \return     True if all tests pass.
+
 ///
-bool test_add() {
-    static_assert(starter::add(2, 3) == 5);
+/// \brief      Verify ASCII name-initial validation.
+///
+bool test_is_valid_initial() {
+    static_assert(starter::is_valid_initial('A'));
+    static_assert(starter::is_valid_initial('z'));
+    static_assert(!starter::is_valid_initial('7'));
 
     auto success = true;
 
-    success &= check(starter::add(-2, 3) == 1, "add: mixed signs");
-    success &= check(starter::add(0, 0) == 0, "add: zeros");
+    success &= check(starter::is_valid_initial('M'), "Uppercase ASCII letters are valid initials");
+
+    success &= check(starter::is_valid_initial('m'), "Lowercase ASCII letters are valid initials");
+
+    success &= check(!starter::is_valid_initial('5'), "Digits are not valid initials");
+
+    success &= check(!starter::is_valid_initial(' '), "Whitespace is not a valid initial");
 
     return success;
 }
@@ -68,7 +78,7 @@ int main() {
     auto success = true;
 
     success &= test_make_greeting();
-    success &= test_add();
+    success &= test_is_valid_initial();
 
     if (success) {
         std::cout << "All tests passed.\n";
