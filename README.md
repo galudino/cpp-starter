@@ -29,6 +29,7 @@ Ninja, GitHub Codespaces, and Visual Studio Code.
 | Target | Description |
 |--------|-------------|
 | greeting | C++ static library |
+| byte_transport | Header-only C++23 transport component |
 | sensor_driver | C static library |
 | starter | Command-line executable |
 | starter_tests | Unit tests |
@@ -58,7 +59,7 @@ cmake --build --preset debug
 ## Run
 
 ```bash
-./build/debug/starter
+./build/debug/app/starter
 ```
 
 ## Test
@@ -82,13 +83,15 @@ build/debug/docs/html/index.html
 ## Formatting
 
 ```bash
-clang-format -i include/* src/* tests/*.cpp
+find app components tests -type f \
+    \( -name '*.c' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) \
+    -exec clang-format -i {} +
 ```
 
 ## Static analysis
 
 ```bash
-clang-tidy -p build/debug src/*.cpp tests/*.cpp
+run-clang-tidy -p build/debug
 ```
 
 ## Debugging
@@ -96,7 +99,7 @@ clang-tidy -p build/debug src/*.cpp tests/*.cpp
 Use the VS Code Debug launch configurations, or:
 
 ```bash
-gdb ./build/debug/starter
+gdb ./build/debug/app/starter
 ```
 
 ## Development environment

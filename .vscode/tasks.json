@@ -64,19 +64,19 @@
         {
             "label": "Clang: Format Check",
             "type": "shell",
-            "command": "find include src tests -type f \\( -name '*.c' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \\) -exec clang-format --dry-run --Werror {} +",
+            "command": "find app components tests -type f \\( -name '*.c' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \\) -exec clang-format --dry-run --Werror {} +",
             "problemMatcher": []
         },
         {
             "label": "Clang: Format All",
             "type": "shell",
-            "command": "find include src tests -type f \\( -name '*.c' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \\) -exec clang-format -i {} +",
+            "command": "find app components tests -type f \\( -name '*.c' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \\) -exec clang-format -i {} +",
             "problemMatcher": []
         },
         {
             "label": "Clang: Tidy",
             "type": "shell",
-            "command": "clang-tidy -p '${command:cmake.buildDirectory}' app/main.cpp components/greeting/include/starter/greeting.hpp components/greeting/src/greeting.cpp components/sensor/include/sensor.h components/sensor/src/sensor.c tests/greeting_tests.cpp tests/sensor_tests.cpp",
+            "command": "run-clang-tidy -p '${command:cmake.buildDirectory}' -header-filter='${workspaceFolder}/components/.*' '^(app|components|tests)/.*\\.(c|cpp)$'",
             "dependsOn": "CMake: Configure",
             "problemMatcher": []
         }
