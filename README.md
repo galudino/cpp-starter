@@ -32,6 +32,13 @@ touching a terminal.
   are out. The status bar buttons and **Tasks: Run Task** cover the same
   actions.
 - The Command Palette is also in the menu (☰) → **View** → **Command Palette**.
+- Safari may not draw VS Code's Markdown preview fully. To preview a file
+  in its own tab, rendered by GitHub itself:
+
+  ```bash
+  gh extension install yusukebe/gh-markdown-preview   # once per Codespace
+  gh markdown-preview README.md
+  ```
 - New Codespaces build the container image first, which takes a couple of
   minutes. To skip that, enable prebuilds under the repository's
   **Settings** → **Codespaces** → **Set up prebuild**.
