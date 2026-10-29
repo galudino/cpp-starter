@@ -6,16 +6,14 @@
     "cmake.ctest.testExplorerIntegrationEnabled": true,
     "cmake.ctest.parallelJobs": 0,
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.formatting": "clangFormat",
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "[cpp]": {
-        "editor.defaultFormatter": "xaver.clang-format"
+        "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "[c]": {
-        "editor.defaultFormatter": "xaver.clang-format"
-    },
-    "files.associations": {
-        "*.hpp": "cpp"
+        "editor.defaultFormatter": "ms-vscode.cpptools"
     }
 }

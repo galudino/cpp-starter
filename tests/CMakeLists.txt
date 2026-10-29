@@ -1,45 +1,33 @@
-add_executable(greeting_tests
-    greeting_tests.cpp
+#
+# Unit tests (doctest).
+#
+
+include(FetchContent)
+
+FetchContent_Declare(doctest
+    GIT_REPOSITORY https://github.com/doctest/doctest.git
+    GIT_TAG        v2.5.3
+    GIT_SHALLOW    TRUE
+    SYSTEM
 )
 
-add_executable(sensor_tests
+FetchContent_MakeAvailable(doctest)
+
+include("${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake")
+
+add_executable(starter_tests
+    greeting_tests.cpp
+    ring_buffer_tests.cpp
     sensor_tests.cpp
 )
 
-add_executable(transport_tests
-    transport_tests.cpp
+target_link_libraries(starter_tests PRIVATE
+    starter::greeting
+    starter::ring_buffer
+    starter::sensor
+    doctest::doctest_with_main
 )
 
-target_link_libraries(greeting_tests 
-    PRIVATE
-        starter::greeting
-)
+set_project_warnings(starter_tests)
 
-target_link_libraries(sensor_tests 
-    PRIVATE
-        starter::sensor
-)
-
-target_link_libraries(transport_tests 
-    PRIVATE
-        starter::transport
-)
-
-set_project_warnings(greeting_tests)
-set_project_warnings(sensor_tests)
-set_project_warnings(transport_tests)
-
-add_test(
-    NAME greeting_library_tests
-    COMMAND greeting_tests
-)
-
-add_test(
-    NAME sensor_library_tests
-    COMMAND sensor_tests
-)
-
-add_test(
-    NAME transport_library_tests
-    COMMAND transport_tests
-)
+doctest_discover_tests(starter_tests)

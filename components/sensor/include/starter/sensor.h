@@ -1,4 +1,3 @@
-
 ///
 /// \file       sensor.h
 /// \brief      Public interface for the example C sensor driver.
@@ -10,8 +9,8 @@
 /// \date       2026-10-23
 ///
 
-#ifndef SENSOR_H
-#define SENSOR_H
+#ifndef STARTER_SENSOR_H
+#define STARTER_SENSOR_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,4 +27,4 @@ int sensor_read(void);
 }
 #endif
 
-#endif /* SENSOR_H */
+#endif // STARTER_SENSOR_H

@@ -76,7 +76,7 @@
         {
             "label": "Clang: Tidy",
             "type": "shell",
-            "command": "run-clang-tidy -p '${command:cmake.buildDirectory}' -header-filter='${workspaceFolder}/components/.*' '^(app|components|tests)/.*\\.(c|cpp)$'",
+            "command": "run-clang-tidy -quiet -p '${command:cmake.buildDirectory}' '^${workspaceFolder}/(app|components|tests)/.*\\.(c|cpp)$'",
             "dependsOn": "CMake: Configure",
             "problemMatcher": []
         }

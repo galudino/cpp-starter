@@ -1,23 +1,22 @@
-
 #
 # Sensor C library.
 #
 
-add_library(sensor_driver STATIC
+add_library(starter_sensor STATIC
     src/sensor.c
 )
 
-target_sources(sensor_driver PUBLIC
+target_sources(starter_sensor PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
     FILES
-        include/sensor/sensor.h
+        include/starter/sensor.h
 )
 
-target_compile_features(sensor_driver PUBLIC
+target_compile_features(starter_sensor PUBLIC
     c_std_17
 )
 
-add_library(starter::sensor ALIAS sensor_driver)
+add_library(starter::sensor ALIAS starter_sensor)
 
-set_project_warnings(sensor_driver)
+set_project_warnings(starter_sensor)

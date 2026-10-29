@@ -8,6 +8,7 @@ add_executable(starter
 
 target_link_libraries(starter PRIVATE
     starter::greeting
+    starter::ring_buffer
     starter::sensor
 )
 

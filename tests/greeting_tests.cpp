@@ -1,88 +1,27 @@
-
 ///
 /// \file       greeting_tests.cpp
 /// \brief      Unit tests for the greeting library.
 ///
 /// \author     galudino
-/// \date       2026-10-23
+/// \date       2026-10-24
 ///
 
 #include <starter/greeting.hpp>
 
-#include <cstdlib>
-#include <iostream>
-#include <string_view>
+#include <doctest/doctest.h>
 
-namespace {
-
-///
-/// \brief      Evaluates a test condition.
-///
-/// \param      condition   Condition to evaluate.
-/// \param      description Description of the test.
-///
-/// \return     True if the condition is satisfied.
-///
-bool check(bool condition, std::string_view description) {
-    if (!condition) {
-        std::cerr << "FAIL: " << description << '\n';
-    }
-
-    return condition;
+TEST_CASE("make_greeting formats the recipient's name") {
+    CHECK(starter::make_greeting("World") == "Hello, World!");
+    CHECK(starter::make_greeting("") == "Hello, !");
 }
 
-///
-/// \brief      Tests the greeting generator.
-///
-/// \return     True if all tests pass.
-///
-bool test_make_greeting() {
-    const auto greeting = starter::make_greeting("World");
-    return check(greeting == "Hello, World!", "make_greeting");
-}
-
-///
-/// \brief      Tests integer addition.
-///
-/// \return     True if all tests pass.
-
-///
-/// \brief      Verify ASCII name-initial validation.
-///
-bool test_is_valid_initial() {
+TEST_CASE("is_valid_initial accepts only ASCII letters") {
     static_assert(starter::is_valid_initial('A'));
     static_assert(starter::is_valid_initial('z'));
     static_assert(!starter::is_valid_initial('7'));
 
-    auto success = true;
-
-    success &= check(starter::is_valid_initial('M'), "Uppercase ASCII letters are valid initials");
-
-    success &= check(starter::is_valid_initial('m'), "Lowercase ASCII letters are valid initials");
-
-    success &= check(!starter::is_valid_initial('5'), "Digits are not valid initials");
-
-    success &= check(!starter::is_valid_initial(' '), "Whitespace is not a valid initial");
-
-    return success;
-}
-
-} // namespace
-
-///
-/// \brief      Test application entry point.
-///
-/// \return     EXIT_SUCCESS if all tests pass; EXIT_FAILURE otherwise.
-///
-int main() {
-    auto success = true;
-
-    success &= test_make_greeting();
-    success &= test_is_valid_initial();
-
-    if (success) {
-        std::cout << "All tests passed.\n";
-    }
-
-    return success ? EXIT_SUCCESS : EXIT_FAILURE;
+    CHECK(starter::is_valid_initial('M'));
+    CHECK(starter::is_valid_initial('m'));
+    CHECK_FALSE(starter::is_valid_initial('5'));
+    CHECK_FALSE(starter::is_valid_initial(' '));
 }
