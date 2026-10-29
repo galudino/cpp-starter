@@ -60,11 +60,15 @@ Either way, each sketch gets its own Codespace. Then:
 
 The workspace folder stays `/workspaces/cpp-starter` for the life of the
 Codespace, even after you publish. Leave it alone: renaming it while the
-Codespace is open can leave the editor without a workspace. Only a new
-Codespace opened from the published repository gets a folder named after
-it. Before deleting a Codespace for any reason, commit and push
-everything: uncommitted changes, stashes, and unpushed branches exist
-only inside it.
+Codespace is open can leave the editor without a workspace.
+
+A Codespace's folder is named after the repository it was created from,
+so a different folder name needs a repository first. To get
+`/workspaces/graph-matching`, publish the sketch as `graph-matching`,
+push everything, then open a new Codespace from that repository and
+delete the old one. Before deleting a Codespace for any reason, commit
+and push everything: uncommitted changes, stashes, and unpushed branches
+exist only inside it.
 
 ### iPad tips
 
