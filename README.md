@@ -19,10 +19,21 @@ touching a terminal.
 
 ## Quick start in Codespaces
 
-1. **Use this template** → **Create a new repository**.
-2. In the new repository: **Code** → **Codespaces** → **Create codespace on main**.
-3. Wait for the `postCreateCommand` to finish configuring and building.
-4. Use the CMake Tools buttons in the status bar to build, run, debug, and
+From the template's page on GitHub, pick one:
+
+- **To try an idea:** **Use this template** → **Open in a codespace**. No
+  repository is created yet. If the sketch is worth keeping, use
+  **Publish Branch** in the Source Control view to create one. An
+  unpublished Codespace is deleted after a period of inactivity (30 days
+  by default), and its work with it.
+- **To start a project:** **Use this template** → **Create a new
+  repository**, then in the new repository **Code** → **Codespaces** →
+  **Create codespace on main**.
+
+Either way, each sketch gets its own Codespace. Then:
+
+1. Wait for the `postCreateCommand` to finish configuring and building.
+2. Use the CMake Tools buttons in the status bar to build, run, debug, and
    test. Every task in `.vscode/tasks.json` is also available from the
    Command Palette under **Tasks: Run Task**.
 
@@ -45,16 +56,18 @@ touching a terminal.
 
 ## Start a new sketch
 
-1. Rename the project, namespace, include directory, and targets:
+1. Rename the project and make it yours:
 
    ```bash
-   ./scripts/rename.sh my_sketch
+   ./scripts/rename.sh my_sketch "Your Name"
    ```
 
    This replaces `cpp_starter`, `starter`, and `STARTER_` throughout the
-   repository, moves each `include/starter/` to `include/my_sketch/`, and
-   deletes the script. Commit or stash first; it refuses to run on a dirty
-   tree.
+   repository and moves each `include/starter/` to `include/my_sketch/`.
+   It sets every `\author` in the file headers and the `LICENSE` copyright
+   holder to the name you give, or to `git config user.name` if you leave
+   it out, and sets every `\date` to today. Then it deletes itself.
+   Commit or stash first; it refuses to run on a dirty tree.
 
 2. Delete the example components you don't need. Each one is a folder
    plus a line in three places:
@@ -65,8 +78,8 @@ touching a terminal.
    | `tests/<name>_tests.cpp` | `tests/CMakeLists.txt` (source and link) |
    | | `app/CMakeLists.txt` and `app/main.cpp`, if the app uses it |
 
-3. Update `LICENSE`, the `project()` description in `CMakeLists.txt`, and
-   `PROJECT_BRIEF` in `docs/Doxyfile.in`.
+3. Update the `project()` description in `CMakeLists.txt` and
+   `PROJECT_BRIEF` in `docs/Doxyfile.in`, and replace this README.
 
 ## Layout
 
@@ -156,6 +169,20 @@ The devcontainer has everything installed. Elsewhere you need:
   (libstdc++ 14 or libc++ 17)
 - Network access on first configure, to fetch doctest
 - Optional: clang-format, clang-tidy, Doxygen, GDB
+
+## Limitations
+
+- Only GCC 14 and Clang 18 on Linux are tested (locally and in CI). The
+  MSVC warning flags in `cmake/CompilerWarnings.cmake` have never been
+  built, and the `asan-ubsan` preset's flags are GCC/Clang-only.
+- There are no `install()` or package export rules. Add them if a sketch
+  grows into a library that other projects consume.
+
+## Maintaining the template
+
+GitHub only shows **Use this template** when **Template repository** is
+ticked under the repository's **Settings** → **General**. A fork or copy
+of this repository needs that setting turned on again.
 
 ## License
 
