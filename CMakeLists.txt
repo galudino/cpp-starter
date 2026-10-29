@@ -28,6 +28,27 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+#------------------------------------------------------------------------------
+# Toolchain check
+#------------------------------------------------------------------------------
+
+# Fail at configure time, rather than mid-build, when the standard library
+# lacks C++23 <print> (for example, GCC 13 or a stale cache from one).
+include(CheckIncludeFileCXX)
+check_include_file_cxx(print STARTER_HAS_STD_PRINT)
+
+if(NOT STARTER_HAS_STD_PRINT)
+    unset(STARTER_HAS_STD_PRINT CACHE)
+    message(FATAL_ERROR
+        "C++23 <print> was not found using ${CMAKE_CXX_COMPILER} "
+        "(${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}).\n"
+        "This project needs GCC 14+, or Clang 18+ with libstdc++ 14 or libc++ 17.\n"
+        "In Codespaces: run 'Codespaces: Rebuild Container', then "
+        "'CMake: Delete Cache and Reconfigure'.\n"
+        "Elsewhere: delete the build directory and configure with "
+        "CXX=g++-14 (or another suitable compiler).")
+endif()
+
 include(cmake/CompilerWarnings.cmake)
 
 #------------------------------------------------------------------------------
