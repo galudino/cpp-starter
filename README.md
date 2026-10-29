@@ -37,6 +37,39 @@ Either way, each sketch gets its own Codespace. Then:
    test. Every task in `.vscode/tasks.json` is also available from the
    Command Palette under **Tasks: Run Task**.
 
+### Sketch first, publish later
+
+1. **Use this template** → **Open in a codespace**. The template's files
+   arrive already committed.
+2. From the workspace root, name the sketch and commit
+   ([details below](#start-a-new-sketch)):
+
+   ```bash
+   ./scripts/rename.sh graph_matching
+   git add -A && git commit -m "Rename project to graph_matching"
+   ```
+
+3. Work as usual, committing as you go.
+4. If the sketch is worth keeping, use **Publish Branch** in the Source
+   Control view (or the cloud icon next to the branch name in the status
+   bar) and choose a repository name. The Codespace you're in is now
+   connected to the new repository: keep working and pushing from it.
+5. If it isn't, delete the Codespace from
+   [github.com/codespaces](https://github.com/codespaces), or let it
+   expire.
+
+The workspace folder stays `/workspaces/cpp-starter` for the life of the
+Codespace, even after you publish. Leave it alone: renaming it while the
+Codespace is open can leave the editor without a workspace.
+
+A Codespace's folder is named after the repository it was created from,
+so a different folder name needs a repository first. To get
+`/workspaces/graph-matching`, publish the sketch as `graph-matching`,
+push everything, then open a new Codespace from that repository and
+delete the old one. Before deleting a Codespace for any reason, commit
+and push everything: uncommitted changes, stashes, and unpushed branches
+exist only inside it.
+
 ### iPad tips
 
 - iPad keyboards usually have no function keys, so F5/F7-style shortcuts
